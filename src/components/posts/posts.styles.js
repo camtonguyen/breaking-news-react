@@ -17,3 +17,24 @@ export const PostsInfo = styled.div`
         color: #696969;
     }
 `;
+
+export const PostCommentsContainer = styled.section`
+    min-height: calc(100vh - 120px);
+    padding: 10px;
+`;
+
+export const PostDetail = styled.div`
+    margin-bottom: 30px;
+    margin-left: 20px;
+    div {
+        margin-left: 18px;
+    }
+`;
+
+export const PostDetailTitle = styled.h3`
+    margin: 0 0 5px;
+`;
+
+export const CommentsContainer = styled.div`
+    margin-left: 20px;
+`;

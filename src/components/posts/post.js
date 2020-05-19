@@ -1,7 +1,15 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 
-import Nav from '../nav/nav';
+import Comment from '../comment/comment';
+
+import {
+    PostCommentsContainer,
+    PostDetail,
+    PostDetailTitle,
+    PostsInfo,
+    CommentsContainer
+} from './posts.styles';
 
 const Post = ({ match }) => {
     const [loading, setLoading] = useState(false);
@@ -10,22 +18,32 @@ const Post = ({ match }) => {
     
     useEffect(() => {
         // effect
+        // let isMounted = false;
         const fetchItem = async () => {
-            setLoading(true);
-            const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${match.params.id}`);
-            setPostItem(res.data);
-            setLoading(false);
+            try {
+                setLoading(true);
+                const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${match.params.id}`);
+                setPostItem(res.data);
+                setLoading(false);
+            } catch(err) {
+                console.error(err)
+            }
         }
         const fetchItemComments = async () => {
-            setLoading(true);
-            const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${match.params.id}/comments`);
-            setComments(res.data);
-            setLoading(false);
+            try {
+                setLoading(true);
+                const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${match.params.id}/comments`);
+                setComments(res.data);
+                setLoading(false);
+            } catch(err) {
+                console.error(err)
+            }
         }
         fetchItem();
         fetchItemComments();
         return () => {
             // cleanup
+            // isMounted = true;
         }
     }, [match.params.id])
 
@@ -35,22 +53,28 @@ const Post = ({ match }) => {
 
     return (
         <Fragment>
-            <Nav />
-            <div>
-                {
-                    postItem && (
-                        <div>
-                            <h2>{postItem.title}</h2>
-                            <p>{postItem.body}</p>
-                        </div>
-                    )
-                }
-            </div>
-            <div>
-                {
-                    comments && comments.map(comment =>  <p key={comment.id}>{comment.name}</p>)
-                }
-            </div>
+            {/* <Nav /> */}
+            <PostCommentsContainer>
+                <PostDetail>
+                    {
+                        postItem && (
+                                <Fragment>
+                                    <PostDetailTitle>&#8227; {postItem.title}</PostDetailTitle>
+                                    <PostsInfo>
+                                        <span>Id: <span>{postItem.id}</span></span>{' - '}
+                                        <span>UserId: <span>{postItem.userId}</span></span>
+                                    </PostsInfo>
+                                </Fragment>
+                        )
+                    }
+                </PostDetail>
+                <CommentsContainer>
+                    <h2>Top Comments:</h2>
+                    {
+                        comments && comments.map(comment =>  <Comment key={comment.id} comment={comment} />)
+                    }
+                </CommentsContainer>
+            </PostCommentsContainer>
         </Fragment>
     )
 }

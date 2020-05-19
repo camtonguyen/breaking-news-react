@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
     display: flex;
     align-items: center;
     background: #ff742b;
-    padding: 4px;
+    padding: 4px 10px 4px 5px;
     justify-content: space-between;
 `;
 
@@ -39,6 +39,10 @@ export const SearchContainer = styled(Search)`
     display: inline-block;
     width: calc(100% - 324px);
     margin-right: 16px;
+`;
+
+export const LoginLogout = styled.div`
+    cursor: pointer;
 `;
 
 export const FormField = styled.form`
