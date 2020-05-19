@@ -1,6 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 
+import Nav from '../nav/nav';
+
 const Post = ({ match }) => {
     const [loading, setLoading] = useState(false);
     const [postItem, setPostItem] = useState({});
@@ -30,8 +32,10 @@ const Post = ({ match }) => {
     if (loading) {
         return <h2>Loading...</h2>;
     }
+
     return (
         <Fragment>
+            <Nav />
             <div>
                 {
                     postItem && (

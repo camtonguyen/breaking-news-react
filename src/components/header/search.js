@@ -1,16 +1,17 @@
 import React from "react";
 
+import { FormField, FormInput } from './header.styles';
+
 const Search = ({ searchTerm, handleChange }) => {
     return (
-      <form>
-        <input
+      <FormField>
+        <FormInput
           type="text"
-          placeholder="Search..."
-          className="mr-sm-2"
+          placeholder="Search title..."
           defaultValue={searchTerm}
           onChange={handleChange}
         />
-      </form>
+      </FormField>
     )
 }
 

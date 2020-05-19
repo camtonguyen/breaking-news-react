@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  PaginationList,
+  PaginationItem,
+  PaginationLink
+} from './pagination.styles';
 
 const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   const pageNumbers = [];
@@ -8,17 +13,15 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   }
 
   return (
-    <nav>
-      <ul className='pagination'>
+      <PaginationList>
         {pageNumbers.map(number => (
-          <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
-            <a onClick={() => paginate(number)} href='!#' className='page-link'>
+          <PaginationItem key={number} className={`${currentPage === number ? 'active' : ''}`}>
+            <PaginationLink onClick={() => paginate(number)} href='!#'>
               {number}
-            </a>
-          </li>
+            </PaginationLink>
+          </PaginationItem>
         ))}
-      </ul>
-    </nav>
+      </PaginationList>
   );
 };
 

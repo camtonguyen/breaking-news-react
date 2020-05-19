@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-
+import { PostList, PostsItem, PostsInfo } from './posts.styles';
 
 const Posts = ({ posts, loading, searchTerm }) => {
   if (loading) {
@@ -13,18 +13,18 @@ const Posts = ({ posts, loading, searchTerm }) => {
   );
 
   return (
-    <Fragment>
-        <ul className='list-group'>
-            { filterPosts.map(({ title, id }) => (
-                  <li key={id}>
-                      <Link to={`/posts/${id}`}>{title}</Link>
-                  </li>
+      <PostList>
+          { filterPosts.map(({ title, id, userId }) => (
+                <PostsItem key={id}>
+                    <Link to={`/posts/${id}`}>{title}</Link>
+                    <PostsInfo>
+                      <span>Id: <span>{id}</span></span>{' - '}
+                      <span>UserId: <span>{userId}</span></span>
+                    </PostsInfo>
+                </PostsItem>
             ))
-            }
-        </ul>
-        <hr />
-        
-    </Fragment>
+          }
+      </PostList>
   );
 };
 

@@ -1,17 +1,26 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 
-import Search from './search';
+import { 
+    HeaderContainer,
+    LogoContainer,
+    LogoImage,
+    LogoText,
+    SearchContainer
+} from './header.styles';
+
 import logo from '../../assets/logo.png';
 
 const Header = ({ searchTerm, handleChange }) => {
     return (
-        <header>
-            <Link to={'/'}>
-                <img src={logo} alt={logo} />
-            </Link>
-            <Search searchTerm={searchTerm} handleChange={handleChange} />
-        </header>
+        <HeaderContainer>
+            <LogoContainer to={'/'}>
+                <LogoImage src={logo} alt='logo'/>
+                <LogoText>
+                    Search <br /> Breaking News
+                </LogoText>
+            </LogoContainer>
+            <SearchContainer searchTerm={searchTerm} handleChange={handleChange} />
+        </HeaderContainer>
     )
 }
 

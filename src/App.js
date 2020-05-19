@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,7 +7,7 @@ import Pagination from './components/pagination/pagination';
 import Post from './components/posts/post';
 import Header from './components/header/header';
 
-import './App.css';
+import { GlobalStyle } from './global.styles';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -40,7 +40,7 @@ const App = () => {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
-    <div className='app'>
+    <Fragment>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -56,7 +56,8 @@ const App = () => {
           <Route path={'/posts/:id'} component={Post}/>
         </Switch>
       </Router>
-    </div>
+      <GlobalStyle />
+    </Fragment>
   );
 };
 
